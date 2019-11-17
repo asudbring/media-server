@@ -1,0 +1,201 @@
+docker network create --subnet=172.20.0.0/16 medianet
+
+
+NzbGet
+
+docker create \
+    --name nzbget \
+    --restart always \
+    --net medianet
+    --ip 172.20.0.2
+    -p 6789:6789 \
+    -v /mnt/datastore/nzbget/config:/config \
+    -v /mnt/datastore/nzbget/downloads:/downloads \
+    -e PUID=0 -e PGID=0 \
+    -e TZ=US \
+    linuxserver/nzbget
+
+    docker start nzbget
+
+
+docker create --name nzbget --restart always --net medianet --ip 172.20.0.2 -p 6789:6789 -v /mnt/datastore/nzbget/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -e PUID=0 -e PGID=0 -e TZ=US linuxserver/nzbget
+
+docker create --name nzbget --net medianet --ip 172.20.0.2 -p 6789:6789 -v d:/mnt:/mnt -v D:\mnt\datastore\nzbget\downloads:/downloads -e PUID=0 -e PGID=0 -e TZ=US linuxserver/nzbget
+
+
+
+SickRage
+
+docker create \
+        --name=sickrage \
+        --restart always \
+        -p 8081:8081 \
+        -v /mnt/datastore/sickrage/config:/config \
+        -v /mnt/datastore/nzbget/downloads:/downloads \
+        -v /mnt/tv:/tv \
+        -e PUID=0 -e PGID=0 \
+        -e TZ=US \
+        linuxserver/sickrage
+
+        docker start sickrage
+
+
+docker create \
+        --name=sickchill \
+        --restart always \
+        --net medianet
+        --ip 172.20.0.4
+        -p 8081:8081 \
+        -v /mnt/datastore/sickchill/config:/config \
+        -v /mnt/datastore/nzbget/downloads:/downloads \
+        -v /mnt/tv:/tv \
+        -e PUID=0 -e PGID=0 \
+        -e TZ=US \
+        binhex/arch-sickchill
+
+        docker start sickchill
+
+docker create --name=sickchill --restart always \
+        --net medianet
+        --ip 172.20.0.4
+        -p 8081:8081 \
+        -v /mnt/datastore/sickchill/config:/config \
+        -v /mnt/datastore/nzbget/downloads:/downloads \
+        -v /mnt/tv:/tv \
+        -e PUID=0 -e PGID=0 \
+        -e TZ=US \
+        binhex/arch-sickchill
+
+CouchPotato
+
+docker create \
+        --name=couchpotato \
+        --restart always \
+        -v /mnt/datastore/couchpotato/config:/config \
+        -v /mnt/datastore/nzbget/downloads:/downloads \
+        -v /mnt/movies:/movies \
+        -p 5050:5050 \
+        -e PUID=0 -e PGID=0 \
+        -e TZ=US \
+        linuxserver/couchpotato
+
+        docker start couchpotato
+
+Plex
+
+docker create \
+            --name plex \
+            --network=host \
+            --restart always \
+            -e PLEX_CLAIM=claim-LiKFuDbZs8qCGb1y95EC \
+            -v /mnt/datastore/plex/config:/config \
+            -v /mnt/datastore/plex/transcode:/transcode \
+            -v /mnt/tv:/tv \
+            -v /mnt/movies:/movies \
+            -e PUID=0 -e PGID=0 \
+            -e TZ=US \
+            plexinc/pms-docker:plexpass
+
+
+
+docker create \
+                --name plex \
+                --restart always \
+		--net medianet
+		--ip 172.20.0.3
+                -p 32400:32400/tcp \
+                -p 3005:3005/tcp \
+                -p 8324:8324/tcp \
+                -p 32469:32469/tcp \
+                -p 1900:1900/udp \
+                -p 32410:32410/udp \
+                -p 32412:32412/udp \
+                -p 32413:32413/udp \
+                -p 32414:32414/udp \
+                -e TZ=US \
+                -e PLEX_CLAIM=claim-QKTor4fGy6d99zVtoBVb \
+                -e ADVERTISE_IP="http://10.20.1.21:32400/" \
+                -e PLEX_UID=0 -e PLEX_GID=0 \
+                -h MediaServer \
+                -v /mnt/datastore/plex/config:/config \
+                -v /mnt/datastore/plex/transcode:/transcode \
+                -v /mnt/tv:/tv \
+                -v /mnt/movies:/movies \
+                plexinc/pms-docker:plexpass
+
+docker create --name plex --restart always --net medianet --ip 172.20.0.3 -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ=US -e PLEX_CLAIM=claim-ytap233o9vyRbNNgVvRj -e ADVERTISE_IP="http://10.10.1.21:32400/" -e PLEX_UID=0 -e PLEX_GID=0 -h MediaServer -v /mnt/datastore/plex/config:/config -v /mnt/datastore/plex/transcode:/transcode -v /mnt/tv:/tv -v /mnt/movies:/movies plexinc/pms-docker:plexpass
+
+
+
+
+
+
+
+
+docker create \
+    --name=mylar \
+    --restart always \
+    --net medianet
+    --ip 
+    -v /mnt/datastore/mylar:/config \
+    -v /mnt/datastore/nzbget/downloads:/downloads \
+    -v /mnt/comics:/comics \
+    -e PGID=0 -e PUID=0 \
+    -e TZ=US \
+    -p 8090:8090 \
+    linuxserver/mylar
+
+
+docker create \
+  --name=unifi \
+  --restart always \
+  -v /mnt/datastore/unifi:/config \
+  -e PGID=0 -e PUID=0  \
+  -p 3478:3478/udp \
+  -p 10001:10001/udp \
+  -p 8080:8080 \
+  -p 8082:8082 \
+  -p 8443:8443 \
+  -p 8843:8843 \
+  -p 8880:8880 \
+  -p 6790:6790 \
+  linuxserver/unifi
+
+docker create --name=unifi -e PGID=0 -e PUID=0 --net=host jacobalberty/unifi
+
+docker create \
+--name=sonarr \
+--restart always \
+--net medianet
+--ip 172.20.0.4
+-p 8989:8989 \
+-e PUID=0 -e PGID=0 \
+-e TZ=US \
+-v /mnt/datastore/sonarr/config:/config \
+-v /mnt/datastore/nzbget/downloads:/downloads \
+-v /mnt/tv:/tv \
+linuxserver/sonarr
+
+docker create --name=sonarr --net medianet --ip 172.20.0.4 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US --cap-add SYS_ADMIN --cap-add DAC_READ_SEARCH -v d:/mnt:/mnt linuxserver/sonarr
+
+docker create --name=sonarr --restart always --net medianet --ip 172.20.0.4 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v d:/mnt/datastore/sonarr/config:/config -v d:/mnt/datastore/nzbget/downloads:/downloads -v d:/mnt/tv:/tv linuxserver/sonarr
+
+docker create --name=sonarr --restart always --net medianet --ip 172.20.0.6 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v /mnt/datastore/sonarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/tv:/tv linuxserver/sonarr:preview
+
+docker create --name=sonarr --restart always --net medianet --ip 172.20.0.4 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v /mnt/datastore/sonarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/tv:/tv binhex/arch-sonarr
+
+
+
+
+docker create \
+--name=radarr \
+--restart always \   
+-v /mnt/datastore/radarr/config:/config \
+-v /mnt/datastore/nzbget/downloads:/downloads \
+-v /mnt/movies:/movies \
+-e TZ=US \
+-e PGID=<gid> -e PUID=<uid>  \
+-p 7878:7878 \
+linuxserver/radarr
+
+docker create --name=radarr --restart always --net medianet --ip 172.20.0.5 -v /mnt/datastore/radarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/movies:/movies -e TZ=US -e PGID=0 -e PUID=0 -p 7878:7878 linuxserver/radarr
