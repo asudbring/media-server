@@ -21,10 +21,8 @@ docker create --name plex --restart always --net medianet --ip 172.20.0.3 -p 324
 ## Sonarr
 
 ```bash
-docker create --name=sonarr --restart always --net medianet --ip 172.20.0.6 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v /mnt/datastore/sonarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/tv:/tv linuxserver/sonarr:latest
+docker create --name=sonarr --restart always --net medianet --ip 172.20.0.4 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v /mnt/datastore/sonarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/tv:/tv linuxserver/sonarr:latest
 
-
-docker create --name=sonarr --restart always --net medianet --ip 172.20.0.4 -p 8989:8989 -e PUID=0 -e PGID=0 -e TZ=US -v /mnt/datastore/sonarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/tv:/tv binhex/arch-sonarr
 ```
 
 ## Radarr
