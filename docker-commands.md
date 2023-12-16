@@ -31,3 +31,19 @@ docker create --name=sonarr --restart always --net medianet --ip 172.20.0.4 -p 8
 docker create --name=radarr --restart always --net medianet --ip 172.20.0.5 -v /mnt/datastore/radarr/config:/config -v /mnt/datastore/nzbget/downloads:/downloads -v /mnt/movies:/movies -e TZ=US -e PGID=0 -e PUID=0 -p 7878:7878 linuxserver/radarr
 ```
 
+## Overseerr
+
+```bash
+docker run -d \
+  --name overseerr \
+  -e TZ=US \
+  -e PGID=0 \
+  -e PUID=0 \
+  --net medianet \
+  --ip 172.20.0.6 \
+  -p 5055:5055 \
+  -v /mnt/datastore/overseerr:/app/config \
+  --restart always \
+  sctx/overseerr
+```
+
