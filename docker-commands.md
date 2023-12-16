@@ -65,3 +65,9 @@ docker run -d \
   --restart always \
   ghcr.io/netbootxyz/netbootxyz
 ```
+
+```bash
+/tool fetch url="https://boot.netboot.xyz/ipxe/netboot.xyz.kpxe"
+/ip tftp add ip-addresses=10.10.1.0/24 req-filename=netboot.xyz.kpxe real-filename=netboot.xyz.kpxe allow=yes read-only=yes
+/ip dhcp-server network set 0 next-server=10.10.1.20 boot-file-name=netboot.xyz.kpxe
+```
