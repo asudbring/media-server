@@ -46,4 +46,22 @@ docker run -d \
   --restart always \
   sctx/overseerr
 ```
+## netbootxyz
 
+```bash
+docker run -d \
+  --name=netbootxyz \
+  -e TZ=US \
+  -e PGID=0 \
+  -e PUID=0 \
+  --net medianet \
+  --ip 172.20.0.7 \
+  -e MENU_VERSION=2.0.59             `# optional` \
+  -p 3000:3000                       `# sets webapp port` \
+  -p 69:69/udp                       `# sets tftp port` \
+  -p 8080:80                         `# optional` \
+  -v /mnt/datastore/netboot:/config   `# optional` \
+  -v /mnt/datastore/netboot:/assets   `# optional` \
+  --restart always \
+  ghcr.io/netbootxyz/netbootxyz
+```
