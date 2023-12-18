@@ -60,8 +60,8 @@ docker run -d \
   -p 3000:3000                       `# sets webapp port` \
   -p 69:69/udp                       `# sets tftp port` \
   -p 8080:80                         `# optional` \
-  -v /mnt/datastore/netboot:/config   `# optional` \
-  -v /mnt/datastore/netboot:/assets   `# optional` \
+  -v /mnt/datastore/netbootxyz/config:/config   `# optional` \
+  -v /mnt/datastore/netbootxyz/assets:/assets   `# optional` \
   --restart always \
   ghcr.io/netbootxyz/netbootxyz
 ```
