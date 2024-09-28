@@ -15,7 +15,7 @@ docker create --name nzbget --restart always --net medianet --ip 172.20.0.2 -p 6
 ## Plex
 
 ```bash
-docker create --name plex --restart always --net medianet --ip 172.20.0.3 -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ=US -e PLEX_CLAIM=claim-ytap233o9vyRbNNgVvRj -e ADVERTISE_IP="http://10.10.1.20:32400/" -e PLEX_UID=0 -e PLEX_GID=0 -h MediaServer -v /mnt/datastore/plex/config:/config -v /mnt/datastore/plex/transcode:/transcode -v /mnt/tv:/tv -v /mnt/movies:/movies plexinc/pms-docker:plexpass
+docker create --name plex --restart always --net medianet --ip 172.20.0.3 -p 32400:32400/tcp -p 3005:3005/tcp -p 8324:8324/tcp -p 32469:32469/tcp -p 1900:1900/udp -p 32410:32410/udp -p 32412:32412/udp -p 32413:32413/udp -p 32414:32414/udp -e TZ=US -e PLEX_CLAIM=claim-s6oBYfX61Maso_2zXpts -e ADVERTISE_IP="http://10.10.1.214:32400/" -e PLEX_UID=0 -e PLEX_GID=0 -h MediaServer -v /mnt/datastore/plex/config:/config -v /mnt/datastore/plex/transcode:/transcode -v /mnt/tv:/tv -v /mnt/movies:/movies plexinc/pms-docker:plexpass
 ```
 
 ## Sonarr
