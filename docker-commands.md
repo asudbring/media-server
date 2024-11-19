@@ -71,3 +71,23 @@ docker run -d \
 /ip tftp add ip-addresses=10.10.1.0/24 req-filename=netboot.xyz.efi real-filename=netboot.xyz.efi allow=yes read-only=yes
 /ip dhcp-server network set 0 next-server=10.10.1.20 boot-file-name=netboot.xyz.efi
 ```
+
+## Calibre-Web
+```bash
+docker run -d \
+  --name=calibre-web \
+  -e PUID=0 \
+  -e PGID=0 \
+  -e TZ=US \
+  -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional` \
+  -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional` \
+  -p 8083:8083 \
+  --net medianet \
+  --ip 172.20.0.8 \
+  -v /mnt/data/calibre-web:/config \
+  -v /mnt/data/calibre-web:/books \
+  --restart always \
+  lscr.io/linuxserver/calibre-web:latest
+```
+
+
