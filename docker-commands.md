@@ -79,8 +79,7 @@ docker run -d \
   -e PUID=0 \
   -e PGID=0 \
   -e TZ=US \
-  -e DOCKER_MODS=linuxserver/mods:universal-calibre `#optional` \
-  -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `#optional` \
+  -e DOCKER_MODS=linuxserver/mods:universal-calibre \
   -p 8083:8083 \
   --net medianet \
   --ip 172.20.0.8 \
