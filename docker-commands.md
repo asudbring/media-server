@@ -84,8 +84,8 @@ docker run -d \
   -p 8083:8083 \
   --net medianet \
   --ip 172.20.0.8 \
-  -v /mnt/data/calibre-web:/config \
-  -v /mnt/data/calibre-web:/books \
+  -v /mnt/datastore/calibre-web/config:/config \
+  -v /mnt/datastore/calibre-web/books:/books \
   --restart always \
   lscr.io/linuxserver/calibre-web:latest
 ```
