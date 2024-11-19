@@ -78,7 +78,7 @@ docker run -d \
   --name=calibre-web \
   -e PUID=0 \
   -e PGID=0 \
-  -e TZ=US \
+  -e TZ=Etc/UTC \
   -e DOCKER_MODS=linuxserver/mods:universal-calibre \
   -p 8083:8083 \
   --net medianet \
