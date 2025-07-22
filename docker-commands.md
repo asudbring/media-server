@@ -89,4 +89,17 @@ docker run -d \
   lscr.io/linuxserver/calibre-web:latest
 ```
 
+## Portainer
+```bash
+docker run -d \
+  -p 8000:8000 \
+  -p 9443:9443 \
+  --name portainer \
+  --net medianet \
+  --ip 172.20.0.9 \
+  --restart=always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /mnt/datastore/portainer_data:/data \
+  portainer/portainer-ee:lts
+```
 
