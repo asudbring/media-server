@@ -117,3 +117,7 @@ services:
       - ./mnt/datastore/nginx/data:/data
       - ./letsencrypt:/etc/letsencrypt
 ```
+
+```bash
+docker-compose up -d
+```
