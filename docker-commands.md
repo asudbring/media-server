@@ -135,7 +135,7 @@ docker compose up -d
 docker run -d \
   --name it-tools \
   --restart always \
-  -p 8080:8080 \
+  -p 8080:80 \
   --net medianet \
   --ip 172.20.0.11 \
   corentinth/it-tools:latest
