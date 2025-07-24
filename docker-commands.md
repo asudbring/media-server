@@ -106,18 +106,37 @@ docker run -d \
 ## NGINX
 ```yml
 services:
-  app:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx
+    restart: always
     ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
+      - "80:80"
+      - "443:443"
+      - "81:81"
     volumes:
       - ./mnt/datastore/nginx/data:/data
       - ./letsencrypt:/etc/letsencrypt
+    networks:
+      medianet:
+        ipv4_address: 172.20.0.10
+
+networks:
+  medianet:
+    external: true
 ```
 
 ```bash
 docker compose up -d
+```
+
+#IT Tools
+```bash
+docker run -d \
+  --name it-tools \
+  --restart always \
+  -p 8080:80 \
+  --net medianet \
+  --ip 172.20.0.11 \
+  corentinth/it-tools:latest
 ```
