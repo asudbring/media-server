@@ -140,3 +140,20 @@ docker run -d \
   --ip 172.20.0.11 \
   corentinth/it-tools:latest
 ```
+
+## Audiobookshelf
+```bash
+docker run -d \
+ --name audiobookshelf \
+ -e PUID=0 \
+ -e PGID=0 \
+ -e TZ=Etc/UTC \
+ -p 13378:80 \
+ --net medianet \
+ --ip 172.20.0.12 \
+ -v /mnt/datastore/audiobookshelf:/config \
+ -v /mnt/datastore/audiobookshelf:/metadata \
+ -v /mnt/audiobooks:/audiobooks \
+ -v /mnt/podcasts:/podcasts \
+ ghcr.io/advplyr/audiobookshelf
+```
