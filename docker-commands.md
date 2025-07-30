@@ -151,9 +151,12 @@ docker run -d \
  -p 13378:80 \
  --net medianet \
  --ip 172.20.0.12 \
+ --restart=always \
  -v /mnt/datastore/audiobookshelf:/config \
  -v /mnt/datastore/audiobookshelf:/metadata \
  -v /mnt/audiobooks:/audiobooks \
  -v /mnt/podcasts:/podcasts \
  ghcr.io/advplyr/audiobookshelf
 ```
+
+
