@@ -159,4 +159,21 @@ docker run -d \
  ghcr.io/advplyr/audiobookshelf
 ```
 
+##LazyLibrarian
+```bash
+docker run -d \
+  --name=lazylibrarian \
+  -e PUID=0 \
+  -e PGID=0 \
+  -e TZ=Etc/UTC \
+  -p 5299:5299 \
+  --net medianet \
+  --ip 172.20.0.13 \
+  -v /mnt/datastore/lazylibrarian/data:/config \
+  -v /mnt/datastore/nzbget/downloads:/downloads \
+  -v /mnt/audiobooks:/books \
+  --restart always \
+  lscr.io/linuxserver/lazylibrarian:latest
+```
+
 
