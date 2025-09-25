@@ -246,6 +246,7 @@ docker run -d \
   --net medianet \
   --ip 172.20.0.14 \
   -v /mnt/datastore/ersatztv/data:/config \
+  -v /mnt/filler:/filler \
   --restart always \
   ghcr.io/ersatztv/ersatztv
 ```
