@@ -130,7 +130,7 @@ networks:
 docker compose up -d
 ```
 
-#IT Tools
+## IT Tools
 ```bash
 docker run -d \
   --name it-tools \
@@ -159,7 +159,7 @@ docker run -d \
  ghcr.io/advplyr/audiobookshelf
 ```
 
-##LazyLibrarian
+## LazyLibrarian
 ```bash
 docker run -d \
   --name=lazylibrarian \
@@ -174,6 +174,21 @@ docker run -d \
   -v /mnt/audiobooks:/books \
   --restart always \
   lscr.io/linuxserver/lazylibrarian:latest
+```
+
+## ErsatzTV
+```bash
+docker run -d \
+  --name ersatztv \
+  -e PUID=0 \
+  -e PGID=0 \
+  -e TZ=Etc/UTC \
+  -p 8409:8409 \
+  --net medianet \
+  --ip 172.20.0.14 \
+  -v /mnt/datastore/ersatztv/data:/config \
+  --restart always \
+  ghcr.io/ersatztv/ersatztv
 ```
 
 
