@@ -44,12 +44,13 @@ docker create \
   -e ADVERTISE_IP="http://10.10.1.251:32400/" \
   -e PLEX_UID=0 \
   -e PLEX_GID=0 \
-  -h MediaServer \
+  -e PLEX_CLAIM=claim-Z54o53E_zw7yqEj12MFE \
+  -h media-server \
   -v /mnt/datastore/plex/config:/config \
   -v /mnt/datastore/plex/transcode:/transcode \
   -v /mnt/tv:/tv \
   -v /mnt/movies:/movies \
-  --device /dev/dri:/dev/dri \
+  --device=/dev/dri/renderD128:/dev/dri/renderD128 \
   plexinc/pms-docker:plexpass
 ```
 
