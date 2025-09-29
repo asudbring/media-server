@@ -41,8 +41,7 @@ docker create \
   -p 32413:32413/udp \
   -p 32414:32414/udp \
   -e TZ=US \
-  -e PLEX_CLAIM=claim-s6oBYfX61Maso_2zXpts \
-  -e ADVERTISE_IP="http://10.10.1.214:32400/" \
+  -e ADVERTISE_IP="http://10.10.1.251:32400/" \
   -e PLEX_UID=0 \
   -e PLEX_GID=0 \
   -h MediaServer \
@@ -50,6 +49,7 @@ docker create \
   -v /mnt/datastore/plex/transcode:/transcode \
   -v /mnt/tv:/tv \
   -v /mnt/movies:/movies \
+  --device /dev/dri:/dev/dri \
   plexinc/pms-docker:plexpass
 ```
 
