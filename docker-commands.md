@@ -50,6 +50,7 @@ docker create \
   -v /mnt/datastore/plex/transcode:/transcode \
   -v /mnt/tv:/tv \
   -v /mnt/movies:/movies \
+  -v /mnt/filler:/filler \
   --device=/dev/dri/renderD128:/dev/dri/renderD128 \
   plexinc/pms-docker:plexpass
 ```
@@ -250,6 +251,22 @@ docker run -d \
   -v /mnt/filler:/filler \
   --restart always \
   ghcr.io/ersatztv/ersatztv
+```
+
+## Tunarr
+```bash
+docker run \
+    --name tunarr \
+    -v /mnt/datastore/tunarr/data:/config \
+    -e PUID=0 \
+    -e PGID=0 \
+    -e "TZ=America/Chicago" \
+    --net medianet \
+    --ip 172.20.0.4 \
+    -p 8000:8000 \
+    --device=/dev/dri/renderD128:/dev/dri/renderD128 \
+    --restart always \
+    chrisbenincasa/tunarr
 ```
 
 
