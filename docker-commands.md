@@ -266,6 +266,7 @@ docker run \
     -p 8000:8000 \
     --device=/dev/dri/renderD128:/dev/dri/renderD128 \
     --restart always \
+    -e 'TUNARR_SERVER_TRUST_PROXY=true' \
     chrisbenincasa/tunarr
 ```
 
