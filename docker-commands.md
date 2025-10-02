@@ -258,6 +258,9 @@ docker run -d \
 docker run \
     --name tunarr \
     -v /mnt/datastore/tunarr/data:/config \
+    -v /mnt/tv:/tv \
+    -v /mnt/movies:/movies \
+    -v /mnt/filler:/filler \
     -e PUID=0 \
     -e PGID=0 \
     -e "TZ=America/Chicago" \
@@ -266,7 +269,7 @@ docker run \
     -p 8000:8000 \
     --device=/dev/dri/renderD128:/dev/dri/renderD128 \
     --restart always \
-    -e 'TUNARR_SERVER_TRUST_PROXY=true' \
+    --trustProxy \
     chrisbenincasa/tunarr
 ```
 
