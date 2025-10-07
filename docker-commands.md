@@ -51,8 +51,8 @@ docker create \
   -v /mnt/tv:/tv \
   -v /mnt/movies:/movies \
   -v /mnt/filler:/filler \
-  --runtime=amd
-  -e AMD_VISIBLE_DEVICES=all rocm/rocm-terminal rocm-smi
+  --runtime=amd \
+  -e AMD_VISIBLE_DEVICES=all rocm/rocm-terminal rocm-smi \
   plexinc/pms-docker:plexpass
 ```
 
