@@ -41,7 +41,7 @@ docker create \
   -p 32413:32413/udp \
   -p 32414:32414/udp \
   -e TZ=US \
-  -e ADVERTISE_IP="http://10.10.1.251:32400/" \
+  -e ADVERTISE_IP="http://plex.sudbringlab.com:32400/" \
   -e PLEX_UID=0 \
   -e PLEX_GID=0 \
   -e PLEX_CLAIM=claim-Z54o53E_zw7yqEj12MFE \
@@ -51,7 +51,8 @@ docker create \
   -v /mnt/tv:/tv \
   -v /mnt/movies:/movies \
   -v /mnt/filler:/filler \
-  --device=/dev/dri/renderD128:/dev/dri/renderD128 \
+  --runtime=amd
+  -e AMD_VISIBLE_DEVICES=all rocm/rocm-terminal rocm-smi
   plexinc/pms-docker:plexpass
 ```
 
