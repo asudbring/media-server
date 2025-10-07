@@ -268,7 +268,8 @@ docker run \
     --net medianet \
     --ip 172.20.0.4 \
     -p 8000:8000 \
-    --device=/dev/dri/renderD128:/dev/dri/renderD128 \
+    --runtime=amd \
+    -e AMD_VISIBLE_DEVICES=all \
     --restart always \
     -e 'TUNARR_SERVER_TRUST_PROXY=true' \
     chrisbenincasa/tunarr
