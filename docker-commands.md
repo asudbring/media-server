@@ -244,12 +244,14 @@ docker run -d \
   --name ersatztv \
   -e PUID=0 \
   -e PGID=0 \
-  -e TZ=Etc/UTC \
+  -e TZ=US \
   -p 8409:8409 \
   --net medianet \
   --ip 172.20.0.14 \
   -v /mnt/datastore/ersatztv/data:/config \
   -v /mnt/filler:/filler \
+  --runtime=amd \
+  -e AMD_VISIBLE_DEVICES=all \
   --restart always \
   ghcr.io/ersatztv/ersatztv
 ```
