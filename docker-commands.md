@@ -250,6 +250,8 @@ docker run -d \
   --ip 172.20.0.14 \
   -v /mnt/datastore/ersatztv/data:/config \
   -v /mnt/filler:/filler \
+  -v /mnt/tv:/tv \
+  -v /mnt/movies:/movies \
   --runtime=amd \
   -e AMD_VISIBLE_DEVICES=all \
   --restart always \
