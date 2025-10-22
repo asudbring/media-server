@@ -283,6 +283,8 @@ docker run \
 ```bash
 docker run -d \
     --restart unless-stopped \
+    --net medianet \
+    --ip 172.20.0.15 \
     -p 3000:80 \
     --name "vert" \
     ghcr.io/vert-sh/vert:latest
