@@ -290,3 +290,35 @@ docker run -d \
     ghcr.io/vert-sh/vert:latest
 ```
 
+## Vertd
+```bash
+docker run -d \
+    --restart unless-stopped \
+    --net medianet \
+    --ip 172.20.0.16 \
+    -p 24153:24153 \
+    --device /dev/dri:/dev/dri \
+    --name vertd \
+    ghcr.io/vert-sh/vertd:latest
+```
+```yml
+services:
+  vertd:
+    image: ghcr.io/vert-sh/vertd:latest
+    container_name: vertd
+    restart: unless-stopped
+    ports:
+      - "24153:24153"
+    devices:
+      - /dev/dri
+networks:
+      medianet:
+        ipv4_address: 172.20.0.16
+
+networks:
+  medianet:
+    external: true
+```
+```bash
+docker compose up -d
+```
