@@ -311,7 +311,7 @@ services:
       - "24153:24153"
     devices:
       - /dev/dri
-networks:
+    networks:
       medianet:
         ipv4_address: 172.20.0.16
 
