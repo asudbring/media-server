@@ -322,3 +322,25 @@ networks:
 ```bash
 docker compose up -d
 ```
+
+## Jellyfin
+```bash
+docker run -d \
+ --name jellyfin \
+ -e PUID=0 \
+ -e PGID=0 \
+ -e "TZ=America/Chicago" \
+ --net medianet \
+ --ip 172.20.0.4 \
+ -p 8096:8096/tcp \
+ -p 7359:7359/udp \
+ --volume /mnt/datastore/jellyfin/config:/config \
+ --volume /mnt/datastore/jellyfin:/cache \
+ --mount type=bind,source=/mnt/tv,target=/tv \
+ --mount type=bind,source=/mnt/movies,target=/movies \
+ --mount type=bind,source=/mnt/filler,target=/filler \
+ --restart=unless-stopped \
+ --runtime=amd \
+ -e AMD_VISIBLE_DEVICES=all \
+ jellyfin/jellyfin
+```
